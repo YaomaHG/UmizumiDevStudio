@@ -21,3 +21,15 @@ Las reglas son simples: seguir correctamente el ritmo para mantener la barra de 
 ## ¿Qué experiencia busca generar?
 
 El juego busca generar una experiencia de inmersión rítmica, concentración y satisfacción personal. La combinación de música, estética llamativa y personajes carismáticos produce una sensación constante de reto y logro. Su estilo visual inspirado en la cultura de internet refuerza una experiencia divertida, dinámica y emocionalmente atractiva.
+
+---
+
+## Bibliografía
+### Artículos
+- Arsenault (2009) — Género como evolución
+- Clarke et al. (2017) — Crítica a clasificaciones rígidas
+- Qaffas (2020) — Género desde enfoque operacional
+- Faisal & Peltoniemi (2018) — Género y datos
+### Libros
+- Schell (2008), Cap. 3
+- Salen & Zimmerman (2004), What is a Game? y Rules
