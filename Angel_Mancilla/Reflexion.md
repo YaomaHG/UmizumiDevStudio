@@ -12,3 +12,5 @@ Para mí, diseñar un videojuego es poder crear una experiencia y poder contar u
 3. Cómo te imaginas tu rol como diseñador durante el curso
 Creo que al ser un curso de manera "expres" seria un poco de todo, ya que se va a ocupar constante colaboracion entre todos para poder realizar las actividades
 no se va a poder dejar todo el trabajo a una sola perosna.
+
+![foto](https://github.com/user-attachments/assets/fddb1462-9e34-4159-9fa4-440a0600b45e)
