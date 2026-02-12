@@ -56,3 +56,31 @@ Esto genera una sensación de frenetismo y agudeza mental.
 Empoderamiento por habilidad individual: A diferencia de otros juegos, el poder viene de una espada que te suma 5 puntos al daño, aquí el poder viene de tu 
 capacidad de reacción. Cuando vences a un "elegido" desarmándolo y rompiendo su arma sagrada en su cara, el jugador siente una 
 satisfacción subversiva: la sensación de que el talento puro ha derrotado al destino predeterminado.
+
+----
+
+Marco MDA (Mecánicas, Dinámicas y Estética)
+El modelo MDA nos ayuda a ver cómo las reglas del juego (Mecánicas) crean comportamientos en el jugador (Dinámicas) para evocar emociones específicas (Estética).
+
+Mecánicas (Las Reglas)
+Desarme por Contraataque: Comando para interceptar el ataque enemigo y robar su arma.
+
+Degradación Inmediata: Contador de durabilidad del arma seteado en 1 (o un solo golpe exitoso).
+
+Árbol de Progresión de Movimientos: Desbloqueo de combos de artes marciales (llaves, patadas, puntos de presión) en lugar de mejoras de equipo.
+
+Detección de Impacto Letal: El metal causa daño masivo; el cuerpo desnudo requiere esquiva perfecta.
+
+Dinámicas (El Comportamiento)
+Combate de "Buitre": El jugador no inicia los combos con armas, sino que "orbita" a los enemigos esperando el momento exacto para robar una y usarla como remate.
+
+Priorización de Objetivos: El jugador analiza el campo de batalla como un rompecabezas: "Necesito matar al arquero primero para usar su arco contra el guardia del escudo".
+
+Flujo de Movimiento Perpetuo: Al no poder bloquear, el jugador se mantiene en constante movimiento (Dashes/Deslaves), creando una coreografía cinemática muy fluida.
+
+Estética (La Experiencia)
+Desafío (Challenge): El juego se percibe como una prueba de reflejos y maestría técnica.
+
+Narrativa Emergente: Cada pelea cuenta la historia de un paria superando obstáculos imposibles.
+
+Expresión: El jugador "escribe" su propio estilo de pelea al elegir qué armas robar y cómo encadenar los golpes físicos, sintiéndose un artista marcial único.
