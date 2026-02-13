@@ -7,7 +7,7 @@ desde el nacimiento como un “no elegido”.
 
 ----
 
-Mecánica Principal: 
+**Mecánica Principal**: 
 
 El juego es un sistema de combate rítmico basado en la captura. Al no poseer armas permanentes, tu cuerpo es el motor y las armas enemigas un combustible temporal.
 Mediante contraataques (parries), el jugador arrebata el arma al enemigo para ejecutar un Movimiento de Ejecución Único. Debido a que el protagonista es un 
@@ -16,7 +16,7 @@ ciclo constante de: Golpear → Desarmar → Ejecutar → Descartar.
 
 ----
 
-Objetivo del Jugador:
+**Objetivo del Jugador**:
 
 En un mundo donde tu valor se decide al nacer mediante la "Marca del Acero", tu objetivo es demostrar la obsolescencia de los “elegidos”. 
 Debiendo infiltrarte en las Ciudadelas de la casta superior y derrotar a los generales para liberar a los "no elegidos" de la servidumbre.
@@ -27,33 +27,33 @@ con elegancia y violencia.
 
 ----
 
-Reglas Básicas:
+**Reglas Básicas**:
 
-Ley del único uso: Cualquier arma recogida (espada, lanza, mazo) tiene una durabilidad de "1 acción de impacto". Una vez usada para atacar o bloquear un
+_**Ley del único uso**_: Cualquier arma recogida (espada, lanza, mazo) tiene una durabilidad de "1 acción de impacto". Una vez usada para atacar o bloquear un
 golpe pesado, se debe descartar para evitar un daño permanente en el jugador.
 
-Crecimiento orgánico: Las nuevas técnicas (agarres, bloqueos de proyectiles, desvíos) no se compran en un menú, se desbloquean al sobrevivir a 
+_**Crecimiento orgánico**_: Las nuevas técnicas (agarres, bloqueos de proyectiles, desvíos) no se compran en un menú, se desbloquean al sobrevivir a 
 encuentros con tipos de armas específicos.
 
-Letalidad realista: Al no tener armadura, dos o tres golpes de metal son suficientes para morir. La defensa activa (esquivar y desviar) es obligatoria; 
+_**Letalidad realista**_: Al no tener armadura, dos o tres golpes de metal son suficientes para morir. La defensa activa (esquivar y desviar) es obligatoria; 
 el bloqueo pasivo no existe.
 
-Gestión de distancia: Los enemigos con armas largas (lanzas) o proyectiles (arcos) tienen la ventaja inicial. El jugador debe usar el entorno y
+_**Gestión de distancia**_: Los enemigos con armas largas (lanzas) o proyectiles (arcos) tienen la ventaja inicial. El jugador debe usar el entorno y
 la velocidad para cerrar la brecha y entrar en su zona de golpeo.
 
 ----
 
 El jugador debe transitar por un arco emocional de inferioridad e indignacion a finalmente una superioridad.
 
-Vulnerabilidad desafiante: Al principio, el jugador debe sentir que "no pertenece" a ese mundo de guerreros imponentes. 
+_**Vulnerabilidad desafiante**_: Al principio, el jugador debe sentir que "no pertenece" a ese mundo de guerreros imponentes. 
 La mecánica de muerte rápida (2-3 golpes) y la imposibilidad de mantener un arma generan una sensación de fragilidad. 
 Esto refuerza el sentimiento de ser un "No elegido" que lucha por su vida.
 
-Adrenalina de improvisación: La mecánica de "Un solo uso" obliga al jugador a estar en un estado de flujo constante.
+_**Adrenalina de improvisación**_: La mecánica de "Un solo uso" obliga al jugador a estar en un estado de flujo constante.
 No puedes relajarte con una espada poderosa; debes pensar: "Uso esta lanza para ensartar a este, y ya estoy buscando el mazo del siguiente". 
 Esto genera una sensación de frenetismo y agudeza mental.
 
-Empoderamiento por habilidad individual: A diferencia de otros juegos, el poder viene de una espada que te suma 5 puntos al daño, aquí el poder viene de tu 
+_**Empoderamiento por habilidad individual**_: A diferencia de otros juegos, el poder viene de una espada que te suma 5 puntos al daño, aquí el poder viene de tu 
 capacidad de reacción. Cuando vences a un "elegido" desarmándolo y rompiendo su arma sagrada en su cara, el jugador siente una 
 satisfacción subversiva: la sensación de que el talento puro ha derrotado al destino predeterminado.
 
