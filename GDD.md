@@ -76,7 +76,7 @@ Día 14-15: Clímax y decisión final
 
 ### Decisiones constantes
 En cada momento el jugador debe elegir entre:
-- ¿Cocinar primero o limpiar?
+- ¿Terminar de limpiar o empezar a cocinar?
 - ¿Esconder dinero ahora o después de las tareas?
 - ¿Leer esta nota o seguir trabajando?
 - ¿Confiar en esta pista o buscar más información?
