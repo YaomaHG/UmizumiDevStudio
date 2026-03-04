@@ -24,9 +24,6 @@ El marido llega a las 19:00. Si la comida no está lista, hay consecuencias. La 
 ### Esperanza frágil
 Cada propina guardada es un paso hacia la libertad. El dinero escondido bajo el colchón representa la autonomía construida en secreto.
 
-### Confusión y duda
-Las notas contradictorias y los recuerdos manipulados generan incertidumbre: *"¿Esto es real? ¿De verdad quiero irme?"*
-
 ### Inmersión psicológica
 La experiencia replica la sensación de vivir en un entorno controlado donde el tiempo no te pertenece, las decisiones son vigiladas y la única liberación posible requiere planificación invisible.
 
@@ -35,9 +32,7 @@ La experiencia replica la sensación de vivir en un entorno controlado donde el 
 ## 3. Perfil de jugador
 
 ### Explorador
-- Disfruta descubrir la historia a través de las notas dispersas
 - Busca entender la narrativa completa y los detalles ocultos
-- Las notas son recompensas narrativas que impulsan la exploración
 
 ### Triunfador  
 - Optimiza decisiones basándose en las pistas encontradas
@@ -56,7 +51,7 @@ La experiencia replica la sensación de vivir en un entorno controlado donde el 
 ### Loop diario (micro)
 ```
 Despertar → Planificar el día → Realizar tareas → Esconder dinero → 
-Leer notas → Ajustar estrategia → Esperar llegada del marido → 
+Ajustar estrategia → Esperar llegada del marido → 
 Evaluación (paciencia) → Recibir propina o penalización → 
 Siguiente día
 ```
@@ -78,7 +73,6 @@ Día 14-15: Clímax y decisión final
 En cada momento el jugador debe elegir entre:
 - ¿Terminar de limpiar o empezar a cocinar?
 - ¿Esconder dinero ahora o después de las tareas?
-- ¿Leer esta nota o seguir trabajando?
 - ¿Confiar en esta pista o buscar más información?
 
 ---
@@ -111,36 +105,16 @@ Tres estados basados en porcentaje de tareas completadas:
 | **Enojado** | <50% de tareas | Tarea extra al día siguiente |
 
 ### Sistema de dinero
-- **Dinero visible:** Se usa para comprar ingredientes (obligatorio)
 - **Dinero escondido:** Acumulado bajo el colchón para escapar
 - **Propinas:** $20 cuando el marido está contento
 - **Meta:** $500 escondidos
 
 **Decisión estratégica:** ¿Priorizo propinas (cumpliendo tareas) o arriesgo para esconder dinero?
 
-### Sistema de notas y memoria
-
-**Tipos de notas:**
-
-1. **Funcionales** - Recordatorios neutros de tareas
-2. **Bonitas** - Momentos felices que generan duda
-3. **Contradictorias** - Pistas opuestas sobre la llave
-4. **Manipuladoras** - Reducen la moral y confianza
-5. **Verdaderas** - Pistas reales (escasas)
-
-**Reglas:**
-- Las notas cambian según el día y estado del marido
-- Leer no cuesta tiempo, decidir sí
-- Notas bonitas aparecen cuando el marido está contento
-- Notas manipuladoras aparecen cuando está enojado
-
 ### Sistema de escape
 - **Condición de victoria:** $500 escondidos + Llave encontrada
 - **Condición de derrota:** Descubierta escapando o tiempo agotado
-- La llave aparece solo bajo condiciones específicas (relacionadas con las notas correctas)
-
-### Objeto especial: Nube de Descanso (opcional)
-Item que permite pausar el tiempo brevemente o recuperar energía mental
+- La llave aparece solo bajo condiciones específicas
 
 ---
 
@@ -166,14 +140,10 @@ Revisar el escondite se convierte en ritual: *"¿Cuánto llevo? ¿Cuánto falta?
 La acumulación progresiva da sensación de avance y control en un entorno opresivo.
 
 ### Duda estratégica
-Las notas contradictorias obligan al jugador a:
+Las acciones contradictorias obligan al jugador a:
 - Formar teorías sobre qué es verdad
 - Rastrear patrones en las contradicciones
 - Tomar decisiones con información incompleta
-
-### Incomodidad narrativa
-Notas bonitas después de eventos negativos crean disonancia cognitiva:
-*"¿Estoy exagerando? ¿Realmente necesito irme?"*
 
 El juego replica la manipulación psicológica a nivel mecánico.
 
@@ -182,7 +152,6 @@ Con cada intento, el jugador aprende:
 - Rutas óptimas entre habitaciones
 - Tiempos exactos de cada tarea
 - Patrones del sistema de paciencia
-- Cómo identificar notas útiles
 
 ---
 
@@ -198,8 +167,8 @@ Una casa aislada con tres espacios:
 
 | Habitación | Función narrativa | Función mecánica |
 |------------|-------------------|------------------|
-| **Cocina** | Lugar de deber donde se mide tu valor | Cocinar, encontrar notas sobre recetas y pistas falsas |
-| **Sala** | Lugar de vigilancia, desde aquí ves la puerta | Espacio de transición, notas sobre intentos fallidos de ayuda |
+| **Cocina** | Lugar de deber donde se mide tu valor | Cocinar, encontrar recetas y pistas falsas |
+| **Sala** | Lugar de vigilancia, desde aquí ves la puerta | Espacio de transición, intentos fallidos de ayuda |
 | **Habitación** | Falsa intimidad, duermes con el enemigo | Escondite del dinero bajo el colchón, aparición de la llave |
 
 **Características del mundo:**
@@ -211,7 +180,6 @@ Una casa aislada con tres espacios:
 ### Conflicto central
 No sabes si lo que recuerdas es real. El marido ha ido:
 - Reemplazando objetos
-- Cambiando notas
 - Reescribiendo la historia
 - Manipulando tu percepción
 
@@ -220,40 +188,32 @@ No sabes si lo que recuerdas es real. El marido ha ido:
 ### Escalada del conflicto
 
 **Días 1-3: Confusión inicial**
-- Notas neutras y funcionales
 - Parecen solo decoración narrativa
 - Aprendizaje de mecánicas básicas
 
 **Días 4-7: Aparición de contradicciones**
-- Dos notas dicen cosas opuestas
-- Notas bonitas después de agresiones
 - Comienza la duda: *"¿Quizás no es tan malo?"*
 
 **Días 8-11: Manipulación activa**
-- Notas que parecen escritas por ti pero no recuerdas escribirlas
 - *"No debo irme. Él me necesita."*
 - Incomodidad meta-narrativa
 
 **Días 12-13: Desesperación / Revelación**
-- Notas más claras pero escasas
 - Mezcla de pistas reales y trampas
 - Decisiones rápidas bajo presión máxima
 
 **Día 14-15: Clímax**
-- Solo una nota es verdadera
 - Las demás desaparecen o son irrelevantes
 - Decisión final
 
 ### Obstáculos principales
 
-1. **Recuerdos falsos:** Las notas cambian entre días, sembrando duda sobre tu memoria
-2. **Recuerdos bonitos:** Momentos felices que hacen dudar de la necesidad de escapar
-3. **Recuerdos contradictorios:** Información opuesta que obliga a elegir sin certeza
+1. **Recuerdos bonitos:** Momentos felices que hacen dudar de la necesidad de escapar
+2. **Recuerdos contradictorios:** Información opuesta que obliga a elegir sin certeza
 
-### Tres verbos del jugador
+### Dos verbos del jugador
 - **Hacer** (tareas domésticas)
 - **Esconder** (dinero y evidencia)
-- **Leer** (notas y recuerdos)
 
 **Prohibidos:** salir, gritar, pedir ayuda (porque no hay a quién)
 
@@ -270,11 +230,9 @@ No sabes si lo que recuerdas es real. El marido ha ido:
 **Área central:**
 - Vista de la habitación actual
 - Objetos interactivos resaltados sutilmente
-- Notas visibles en el entorno
 
 **Elemento inferior izquierdo:**
-- Inventario simplificado
-  - Dinero visible (para compras)
+- Inventario simplificado   
   - Estado de ingredientes
 
 **Elemento inferior derecho:**
@@ -297,11 +255,6 @@ No sabes si lo que recuerdas es real. El marido ha ido:
 - ✓ Completada (verde)
 - ○ Pendiente (blanco)
 - ! Crítica (comida, rojo si no está lista a las 18:30)
-
-**Notas:**
-- Icono de papel en ubicaciones específicas
-- Brillo sutil para indicar notas no leídas
-- Cambio de color si contradice nota anterior
 
 ### Transiciones
 - Movimiento fluido entre habitaciones (sin loading)
@@ -326,12 +279,6 @@ No sabes si lo que recuerdas es real. El marido ha ido:
 - Sala (espacio de paso)
 - Habitación (escondite del dinero)
 
-**Sistema de notas básico:**
-- 1 nota funcional por día
-- 2 notas contradictorias (día 3 y día 5)
-- 1 nota bonita (día 4)
-- 1 nota verdadera (día 6)
-
 **Condiciones de victoria/derrota:**
 - Victoria: $140 en 7 días (20x7) + llave aparece automáticamente día 7
 - Derrota: Paciencia mínima 3 días seguidos
@@ -348,7 +295,6 @@ Validar que el jugador siente:
 - Conflicto entre tareas y esconder dinero
 - Tensión creciente hacia las 19:00
 - Satisfacción al acumular dinero en secreto
-- Duda al leer notas contradictorias
 
 ---
 
@@ -366,19 +312,7 @@ Validar que el jugador siente:
 
 ---
 
-### Riesgo 2: Notas contradictorias pueden confundir demasiado
-**Problema:** Jugadores pueden sentirse perdidos sin dirección clara
-
-**Mitigación:**
-- Introducir contradicciones gradualmente (días 3-4 en adelante)
-- Mantener patrones identificables para jugadores atentos
-- Una nota claramente verdadera cada 2-3 días
-
-**Trade-off:** Reducir algo de ambigüedad narrativa para mantener jugabilidad
-
----
-
-### Riesgo 3: Tema sensible puede alejar jugadores
+### Riesgo 2: Tema sensible puede alejar jugadores
 **Problema:** Abuso doméstico es un tema difícil que puede incomodar
 
 **Mitigación:**
@@ -391,12 +325,11 @@ Validar que el jugador siente:
 
 ---
 
-### Riesgo 4: Repetitividad de tareas
+### Riesgo 3: Repetitividad de tareas
 **Problema:** Hacer las mismas tareas cada día puede volverse monótono
 
 **Mitigación:**
 - Variación en exigencias diarias (tarea extra, ingredientes distintos)
-- Sistema de notas proporciona variedad narrativa
 - Duración de juego limitada (máximo 15 días)
 - Cada día tiene cambios sutiles en el entorno
 
@@ -404,7 +337,7 @@ Validar que el jugador siente:
 
 ---
 
-### Riesgo 5: Dificultad de balance
+### Riesgo 4: Dificultad de balance
 **Problema:** Muy fácil = sin tensión, muy difícil = frustración
 
 **Mitigación:**
@@ -416,7 +349,7 @@ Validar que el jugador siente:
 
 ---
 
-### Riesgo 6: Mecánicas vs Narrativa
+### Riesgo 5: Mecánicas vs Narrativa
 **Problema:** El enfoque en mecánicas puede diluir el mensaje narrativo
 
 **Mitigación:**
