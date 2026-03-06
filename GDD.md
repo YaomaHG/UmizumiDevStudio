@@ -1,390 +1,485 @@
 # SUPONGAMOS QUE MAÑANA
-**Game Design Document**
+
+**Género:** Simulación doméstica + terror psicológico  
+**Plataforma objetivo (prototipo):** PC (teclado y mouse)  
+**Sesiones objetivo:** 15–20 min por día in game  
+**Versión:** 1.1 (Marzo 2026)  
+
+**Autores:**  
+Ana Torres  
+Leonardo Mancilla  
+Salvador Garibay  
+Omar Hernández  
+Leonardo Murataya  
 
 ---
 
-## 1. High Concept
+# 1. High Concept
 
-Un juego de simulación doméstica con elementos de terror psicológico donde controlas a un ama de casa que debe cumplir con las expectativas del hogar mientras reúne recursos en secreto para escapar de una relación abusiva. La gestión del tiempo es tu enemigo y tu única herramienta de supervivencia.
+## Pitch (1 frase)
+Un juego de gestión del tiempo y recursos donde encarnas a un ama de casa que, bajo una relación coercitiva, debe mantener el hogar impecable antes de las 19:00 mientras reúne en secreto $500 y una llave para escapar; cada minuto cuenta y cada decisión puede delatar tu plan.
 
-**Frase clave:** *Cada minuto cuenta. Cada decisión te acerca a la libertad... o a ser descubierta.*
+## Foco emocional
 
----
+- **Tensión constante:** el reloj global y los límites por tarea presionan.
+- **Esperanza frágil:** cada billete escondido abre una ruta de salida.
+- **Vigilancia ambigua:** el entorno “juzga” mediante estados y penalizaciones.
 
-## 2. Experiencia central
+## Fantasía del jugador
+Ser capaz de optimizar un día imposible: aparentar normalidad y, en paralelo, avanzar en un plan clandestino.
 
-El jugador debe sentir:
+## Pilares de diseño
 
-### Tensión constante
-El reloj avanza en tiempo real. Cada segundo es una decisión entre cumplir con las tareas domésticas o avanzar en el plan de escape.
+1. Tiempo como enemigo (macro a las 19:00 y micro por tarea).
+2. Visibilidad y sospecha (feedback de paciencia y eventos).
+3. Elecciones significativas (priorizar, arriesgar, esconder).
+4. Psicológico por encima de lo gráfico (sonido, texto, UI).
 
-### Presión temporal
-El marido llega a las 19:00. Si la comida no está lista, hay consecuencias. La ansiedad crece conforme se acerca la hora límite.
-
-### Esperanza frágil
-Cada propina guardada es un paso hacia la libertad. El dinero escondido bajo el colchón representa la autonomía construida en secreto.
-
-### Inmersión psicológica
-La experiencia replica la sensación de vivir en un entorno controlado donde el tiempo no te pertenece, las decisiones son vigiladas y la única liberación posible requiere planificación invisible.
-
----
-
-## 3. Perfil de jugador
-
-### Explorador
-- Busca entender la narrativa completa y los detalles ocultos
-
-### Triunfador  
-- Optimiza decisiones basándose en las pistas encontradas
-- Busca la estrategia perfecta para maximizar propinas y minimizar riesgos
-- Analiza patrones y consecuencias para ganar eficientemente
-
-### Características generales
-- **Nivel:** Intermedio - Sistema claro pero no obvio, requiere atención y análisis
-- **Sesiones:** Cortas - Cada día del juego es una sesión completa (aproximadamente 15-20 minutos)
-- **Preferencias:** Narrativa fuerte, decisiones significativas, desafío progresivo
+**Frase clave:**  
+Cada minuto cuenta. Cada decisión te acerca a la libertad… o a ser descubierta.
 
 ---
 
-## 4. Core Loop
+# 2. Fantasía, Experiencia Central y Público
 
-### Loop diario (micro)
-```
-Despertar → Planificar el día → Realizar tareas → Esconder dinero → 
-Ajustar estrategia → Esperar llegada del marido → 
-Evaluación (paciencia) → Recibir propina o penalización → 
-Siguiente día
-```
+## Experiencia central buscada
 
-### Loop de progresión (macro)
-```
-Día 1-3: Aprendizaje y supervivencia básica
-   ↓
-Día 4-7: Acumulación de recursos y descubrimiento de contradicciones
-   ↓
-Día 8-11: Manipulación activa y duda creciente
-   ↓
-Día 12-13: Desesperación y búsqueda de la llave
-   ↓
-Día 14-15: Clímax y decisión final
-```
+- Presión temporal progresiva (verde → amarillo → rojo en reloj global y por tarea).
+- Trade offs claros: ¿cocinar bien y seguro, o arriesgar minijuego para ahorrar segundos?
+- Latencia del peligro: la paciencia del marido es el equivalente a una “barra de amenaza”.
 
-### Decisiones constantes
-En cada momento el jugador debe elegir entre:
-- ¿Terminar de limpiar o empezar a cocinar?
-- ¿Esconder dinero ahora o después de las tareas?
-- ¿Confiar en esta pista o buscar más información?
+## Perfil de jugador objetivo
+
+- **Explorador narrativo:** aprecia pistas, detalles ambientales y ambigüedad.
+- **Triunfador táctico:** optimiza rutas, lee patrones, minimiza riesgo.
+- **Nivel:** intermedio (loop claro, ejecución con margen de error).
+
+**Sesión tipo:**  
+15–20 min (un día in game). Ciclo de 14–15 días como campaña corta.
 
 ---
 
-## 5. Mecánicas principales
+# 3. Core Loop + Estado de Juego
 
-### Gestión del tiempo
-- Reloj en tiempo real que avanza de 8:00 a 19:00
-- Cada tarea consume tiempo específico
-- Hora límite no negociable: 19:00 (llegada del marido)
-- El jugador decide el orden y priorización de actividades
+## Loop diario (micro)
 
-### Sistema de tareas domésticas
-**Tareas obligatorias:**
-- Cocinar (obligatoria, mayor tiempo)
+1. **Despertar (Estado: Planificación)**  
+   Revisar lista de tareas del día, tiempos límite por tarea, reloj global, ubicación de pistas.
+
+2. **Ejecución (Estado: Acción)**  
+   Realizar tareas (cocinar, limpiar, lavar ropa en días definidos), participar en minijuegos si aplica, esconder dinero.
+
+3. **Cierre (Estado: Evaluación)**  
+   A las 19:00 llega el marido; el sistema evalúa % de tareas completadas y dinero oculto.
+
+4. **Transición (Estado: Progresión)**  
+   Ajustar dificultad, guardar día y pasar al siguiente.
+
+---
+
+## Loop de progresión (macro)
+
+- **Días 1–3:** Aprendizaje
+- **Días 4–7:** Descubrimiento
+- **Días 8–11:** Manipulación
+- **Días 12–13:** Desesperación
+- **Días 14–15:** Clímax
+
+---
+
+## Cambio de estado definido
+
+### Estado PLANIFICACIÓN
+UI de lista + cronómetro global pausado.
+
+**Trigger:** pulsar *Comenzar Día*
+
+### Estado ACCIÓN
+Tiempo activo, tareas con temporizador individual.
+
+**Triggers internos:**
+
+- Completar tarea → ajusta paciencia y reloj
+- Fallar tarea → penalización o tareas extra
+- Evento de ruido sospechoso → chequeo de sospecha
+
+### Estado EVALUACIÓN (19:00)
+
+- Se congelan acciones
+- Se calcula cumplimiento
+- Se aplican consecuencias
+
+**Trigger:** hora ≥ 19:00
+
+### Estado PROGRESIÓN
+
+Guardar progreso y aplicar cambios al siguiente día.
+
+**Trigger:** continuar
+
+---
+
+# 4. Mecánicas y Sistemas
+
+## Reloj Global (8:00–19:00)
+
+Indicadores:
+
+- 🟢 Verde → seguro
+- 🟡 Amarillo → riesgo
+- 🔴 Rojo → crítico
+
+La UI reacciona con parpadeos y audio sutil.
+
+---
+
+## Sistema de tiempos por tarea
+
+Si se excede el tiempo límite:
+
+- Se pierde la tarea
+- Disminuye paciencia
+- Se pierden bonos
+
+### Ejemplos
+
+| Tarea | Tiempo | Penalización |
+|------|------|------|
+| Cocinar | 3–5 min | Paciencia mínima |
+| Limpiar sala | 2–4 min | -15% paciencia |
+| Lavar ropa | 5 min | Sin propina |
+| Limpiar habitación | 3 min | +1 tarea siguiente día |
+
+---
+
+## Sistema de tareas
+
+### Obligatorias
+
+- Cocinar
 - Limpiar cocina
 - Limpiar sala
 - Limpiar habitación
-- Lavar ropa (aparece algunos días)
+- Lavar ropa (algunos días)
 
-**Consecuencia:** Si la comida no está servida a las 19:00 → paciencia mínima automática
+### Opcionales
 
-### Medidor de paciencia del marido
-Tres estados basados en porcentaje de tareas completadas:
-
-| Estado | Condición | Consecuencia |
-|--------|-----------|--------------|
-| **Contento** | 80-100% de tareas | Propina de $20 |
-| **Neutral** | 50-79% de tareas | Sin propina |
-| **Enojado** | <50% de tareas | Tarea extra al día siguiente |
-
-### Sistema de dinero
-- **Dinero escondido:** Acumulado bajo el colchón para escapar
-- **Propinas:** $20 cuando el marido está contento
-- **Meta:** $500 escondidos
-
-**Decisión estratégica:** ¿Priorizo propinas (cumpliendo tareas) o arriesgo para esconder dinero?
-
-### Sistema de escape
-- **Condición de victoria:** $500 escondidos + Llave encontrada
-- **Condición de derrota:** Descubierta escapando o tiempo agotado
-- La llave aparece solo bajo condiciones específicas
+- Ordenar armario
+- Limpiar ventanas
 
 ---
 
-## 6. Dinámicas esperadas
+## Minijuegos (si se implementan)
 
-### Priorización urgente
-El jugador constantemente evalúa: *"¿Cocino antes de limpiar? ¿O limpio rápido y cocino después?"*
-
-La presión temporal fuerza decisiones rápidas que determinan el éxito del día.
-
-### Riesgo calculado
-Cada vez que escondes dinero sacrificas tiempo de tareas. El jugador debe evaluar:
-- ¿Vale la pena el riesgo hoy?
-- ¿Puedo permitirme no recibir propina?
-- ¿Qué pasa si me descubre?
-
-### Miedo al reloj
-El jugador mira constantemente el tiempo. Cada minuto que pasa aumenta la ansiedad. La urgencia se vuelve palpable cerca de las 19:00.
-
-### Esperanza contenida
-Revisar el escondite se convierte en ritual: *"¿Cuánto llevo? ¿Cuánto falta?"*
-
-La acumulación progresiva da sensación de avance y control en un entorno opresivo.
-
-### Duda estratégica
-Las acciones contradictorias obligan al jugador a:
-- Formar teorías sobre qué es verdad
-- Rastrear patrones en las contradicciones
-- Tomar decisiones con información incompleta
-
-El juego replica la manipulación psicológica a nivel mecánico.
-
-### Optimización progresiva
-Con cada intento, el jugador aprende:
-- Rutas óptimas entre habitaciones
-- Tiempos exactos de cada tarea
-- Patrones del sistema de paciencia
+- **Cocinar:** precisión
+- **Lavar ropa:** ritmo
+- **Esconder dinero:** memoria
+- **Limpiar habitación:** organización rápida
 
 ---
 
-## 7. Mundo y conflicto
+## Medidor de paciencia
 
-### Tema central
-**La memoria como trampa.**
+| Estado | Requisito | Resultado |
+|------|------|------|
+| Contento | 80–100% | $20 propina |
+| Neutral | 50–79% | Sin propina |
+| Enojado | <50% | +1 tarea siguiente día |
 
-Los recuerdos no son refugio, son herramientas de manipulación. El marido ha reescrito la historia del hogar.
-
-### Mundo
-Una casa aislada con tres espacios:
-
-| Habitación | Función narrativa | Función mecánica |
-|------------|-------------------|------------------|
-| **Cocina** | Lugar de deber donde se mide tu valor | Cocinar, encontrar recetas y pistas falsas |
-| **Sala** | Lugar de vigilancia, desde aquí ves la puerta | Espacio de transición, intentos fallidos de ayuda |
-| **Habitación** | Falsa intimidad, duermes con el enemigo | Escondite del dinero bajo el colchón, aparición de la llave |
-
-**Características del mundo:**
-- Aislamiento físico y psicológico
-- No hay ayuda externa visible
-- La casa es el único espacio disponible
-- Podría estar en cualquier ciudad, pero no importa
-
-### Conflicto central
-No sabes si lo que recuerdas es real. El marido ha ido:
-- Reemplazando objetos
-- Reescribiendo la historia
-- Manipulando tu percepción
-
-**Consecuencia mecánica:** Las pistas para escapar están mezcladas con pistas falsas. Debes decidir en qué confiar.
-
-### Escalada del conflicto
-
-**Días 1-3: Confusión inicial**
-- Parecen solo decoración narrativa
-- Aprendizaje de mecánicas básicas
-
-**Días 4-7: Aparición de contradicciones**
-- Comienza la duda: *"¿Quizás no es tan malo?"*
-
-**Días 8-11: Manipulación activa**
-- *"No debo irme. Él me necesita."*
-- Incomodidad meta-narrativa
-
-**Días 12-13: Desesperación / Revelación**
-- Mezcla de pistas reales y trampas
-- Decisiones rápidas bajo presión máxima
-
-**Día 14-15: Clímax**
-- Las demás desaparecen o son irrelevantes
-- Decisión final
-
-### Obstáculos principales
-
-1. **Recuerdos bonitos:** Momentos felices que hacen dudar de la necesidad de escapar
-2. **Recuerdos contradictorios:** Información opuesta que obliga a elegir sin certeza
-
-### Dos verbos del jugador
-- **Hacer** (tareas domésticas)
-- **Esconder** (dinero y evidencia)
-
-**Prohibidos:** salir, gritar, pedir ayuda (porque no hay a quién)
+Si la comida no está lista a las 19:00 → paciencia mínima automática.
 
 ---
 
-## 8. Interfaz conceptual
+## Sistema de dinero
 
-### Pantalla principal
+**Fuente:** propina $20
 
-**Elemento superior:**
-- Reloj digital prominente (08:00 - 19:00)
-- Indicador visual de tiempo restante
+**Almacenamiento:** escondites (ej. colchón)
 
-**Área central:**
-- Vista de la habitación actual
-- Objetos interactivos resaltados sutilmente
-
-**Elemento inferior izquierdo:**
-- Inventario simplificado   
-  - Estado de ingredientes
-
-**Elemento inferior derecho:**
-- Lista de tareas pendientes
-  - Marcadas al completarse
-  - Indicador de prioridad (comida)
-
-**Oculto hasta interacción:**
-- Dinero escondido (se ve al interactuar con el colchón)
-- Medidor de paciencia del marido (se revela al final del día)
-
-### Feedback visual
-
-**Reloj:**
-- Verde: 08:00-15:00 (tiempo abundante)
-- Amarillo: 15:00-18:00 (precaución)
-- Rojo: 18:00-19:00 (urgencia máxima)
-
-**Tareas:**
-- ✓ Completada (verde)
-- ○ Pendiente (blanco)
-- ! Crítica (comida, rojo si no está lista a las 18:30)
-
-### Transiciones
-- Movimiento fluido entre habitaciones (sin loading)
-- Corte a negro al final del día → Evaluación → Siguiente día
-- Texto flotante al esconder dinero: "+$20 escondidos"
+**Meta:** $500
 
 ---
 
-## 9. MVP (Minimum Viable Product)
+## Sistema de escape
 
-### Alcance mínimo para testear el core loop
+**Victoria**
 
-**Mecánicas esenciales:**
-1. Sistema de tiempo real (8:00 - 19:00)
-2. Tres tareas básicas: Cocinar, Limpiar cocina, Limpiar sala
-3. Sistema de paciencia del marido (3 estados)
-4. Esconder dinero bajo el colchón
-5. Sistema de días (mínimo 7 días para testear progresión)
+- $500
+- Llave encontrada
 
-**Espacios:**
-- Cocina (funcional completa)
-- Sala (espacio de paso)
-- Habitación (escondite del dinero)
+**Derrota**
 
-**Condiciones de victoria/derrota:**
-- Victoria: $140 en 7 días (20x7) + llave aparece automáticamente día 7
-- Derrota: Paciencia mínima 3 días seguidos
-
-**Interfaz mínima:**
-- Reloj visible
-- Lista de tareas
-- Contador de dinero escondido (oculto hasta interactuar)
-- Mensaje al final del día con estado del marido
-
-**Objetivo del MVP:**
-Validar que el jugador siente:
-- Presión temporal
-- Conflicto entre tareas y esconder dinero
-- Tensión creciente hacia las 19:00
-- Satisfacción al acumular dinero en secreto
+- Ser descubierto
+- Paciencia mínima repetida
 
 ---
 
-## 10. Riesgos y trade-offs
+# 5. Contenido, Mundo y Interfaz
 
-### Riesgo 1: Tiempo real puede ser frustrante
-**Problema:** Jugadores pueden sentirse presionados de forma negativa
+## Espacios (MVP)
 
-**Mitigación:**
-- Ajustar velocidad del reloj para que sea retador pero alcanzable
-- Permitir pausar para pensar estrategia (pero el tiempo sigue corriendo)
-- Implementar "Nube de Descanso" como recurso limitado de pausa
-
-**Trade-off:** Sacrificar algo de tensión por accesibilidad
+- **Cocina:** centro del gameplay
+- **Sala:** tránsito y vigilancia
+- **Habitación:** esconder dinero
 
 ---
 
-### Riesgo 2: Tema sensible puede alejar jugadores
-**Problema:** Abuso doméstico es un tema difícil que puede incomodar
+## Tema y conflicto
 
-**Mitigación:**
-- Violencia implícita, nunca explícita
-- Enfoque en el aspecto psicológico y la escapatoria
-- Advertencia de contenido sensible al inicio
-- Representación respetuosa y con propósito narrativo
-
-**Trade-off:** Mantener impacto emocional sin caer en explotación
+La memoria como trampa.  
+Recuerdos bonitos y contradictorios alimentan la duda.
 
 ---
 
-### Riesgo 3: Repetitividad de tareas
-**Problema:** Hacer las mismas tareas cada día puede volverse monótono
+## Interfaz conceptual
 
-**Mitigación:**
-- Variación en exigencias diarias (tarea extra, ingredientes distintos)
-- Duración de juego limitada (máximo 15 días)
-- Cada día tiene cambios sutiles en el entorno
+**HUD**
 
-**Trade-off:** La repetición es temática (representa la rutina opresiva) pero debe balancearse con engagement
+- reloj global
+- lista de tareas
+- medidor de paciencia
 
----
+**Feedback**
 
-### Riesgo 4: Dificultad de balance
-**Problema:** Muy fácil = sin tensión, muy difícil = frustración
+- “+$20 escondidos”
+- “Ropa manchada”
 
-**Mitigación:**
-- Playtesting extensivo para ajustar tiempos
-- Diferentes dificultades opcional (más/menos tiempo, mayor/menor exigencia)
-- Feedback claro sobre por qué se perdió
+**Transiciones**
 
-**Trade-off:** Puede requerir múltiples iteraciones antes del balance correcto
+- corte a negro al final del día
+- resumen textual
 
 ---
 
-### Riesgo 5: Mecánicas vs Narrativa
-**Problema:** El enfoque en mecánicas puede diluir el mensaje narrativo
+# 6. Diseño del MVP
 
-**Mitigación:**
-- Mantener coherencia entre sistemas mecánicos y narrativos
-- Cada mecánica refuerza el tema central
-- Evitar gamificación excesiva que trivialice el tema
+## Objetivo
 
-**Trade-off:** Algunas optimizaciones mecánicas pueden sacrificarse por integridad narrativa
+Validar:
 
----
-
-## Coherencia del diseño
-
-Este GDD mantiene la coherencia entre **Mecánicas → Dinámicas → Estética** planteada en la propuesta original:
-
-**Mecánicas:**
-- Tiempo real con límite
-- Tareas domésticas obligatorias
-- Sistema de paciencia del marido
-- Acumulación de recursos en secreto
-
-**Dinámicas:**
-- Priorización urgente
-- Riesgo calculado
-- Miedo al reloj
-- Esperanza contenida
-
-**Estética:**
-- Tensión constante
-- Frustración justa
-- Esperanza frágil
-- Incomodidad narrativa
+- gestión de tiempo
+- tareas con límite
+- sistema de paciencia
 
 ---
 
-**Última actualización:** Febrero 2026  
-**Versión:** 1.0  
-**Autor:** Ana Torres
+## Ámbito
+
+**Días jugables**
+
+- Día 1
+- Día 2
+- Día 3
+
+**Espacios**
+
+- Cocina
+- Sala
+- Habitación
+
+---
+
+## Estructura por día
+
+### Día 1 — Aprendizaje
+
+Tareas:
+
+- Cocinar (5 min)
+- Limpiar cocina (3 min)
+- Limpiar sala (4 min)
+
+Objetivo: obtener propina.
+
+---
+
+### Día 2 — Consolidación
+
+Tareas:
+
+- Cocinar (4 min)
+- Limpiar sala (3 min)
+- Limpiar habitación (3 min)
+- Lavar ropa (5 min opcional)
+
+Eventos de ruido aparecen.
+
+---
+
+### Día 3 — Stress test
+
+Tareas:
+
+- Cocinar (3–4 min)
+- Limpiar cocina (3 min)
+- Limpiar sala (3 min)
+- Limpiar habitación (3 min)
+
+Evaluación estricta.
+
+---
+
+## Victoria en MVP
+
+- ≥ $40 escondidos
+- no caer en paciencia mínima más de 2 veces
+
+## Derrota en MVP
+
+- paciencia mínima 3 veces
+- <50% tareas dos días seguidos
+
+---
+
+# 7. Qué NO entra en el MVP
+
+- Minijuegos avanzados
+- Sistema de sospecha complejo
+- Narrativa no lineal
+- Puzles de la llave
+- Campaña completa de 15 días
+- Audio avanzado
+- Arte final
+
+---
+
+# 8. Economía y Balance
+
+## Tiempo global
+
+8:00–19:00  
+≈ 12–15 minutos reales por día
+
+---
+
+## Paciencia del marido
+
+Escala **0–100**
+
+| Estado | Rango | Resultado |
+|------|------|------|
+| Contento | ≥80 | $20 |
+| Neutral | 50–79 | $0 |
+| Enojado | <50 | +1 tarea |
+
+---
+
+## Dinero
+
+Ingreso máximo diario: **$20**
+
+Meta MVP: **$40**
+
+Escondites simples:
+
+- colchón
+- mesita
+
+---
+
+## Curva de dificultad
+
+| Día | Dificultad |
+|----|----|
+| Día 1 | fácil |
+| Día 2 | media |
+| Día 3 | alta |
+
+---
+
+# 9. Producción y Riesgos
+
+## Riesgos
+
+### Tema sensible
+
+Control:
+
+- tono responsable
+- sistema abstracto en vez de personaje visible
+
+### Repetición del gameplay
+
+Control:
+
+- tareas extra
+- eventos de ruido
+- variaciones de tiempo
+
+### Balance
+
+Control:
+
+- ajustes de tiempo ±10–20%
+
+### UI saturada
+
+Control:
+
+- iconos simples
+- capas de información progresivas
+
+---
+
+## Hitos de desarrollo (MVP)
+
+**Semana 1**
+
+- loop básico
+- reloj
+- evaluación 19:00
+
+**Semana 2**
+
+- paciencia
+- propina
+- UI básica
+
+**Semana 3**
+
+- esconder dinero
+- eventos de ruido
+
+**Semana 4**
+
+- pulido
+- tutorial
+- QA
+
+**Semana 5–6 (opcional)**
+
+- telemetría
+- SFX básicos
+
+---
+
+# 10. Cierre
+
+## Definición de “Listo” (MVP)
+
+Debe incluir:
+
+1. Estados completos del juego
+2. Reloj global
+3. Sistema de tareas
+4. Paciencia funcional
+5. Economía de dinero
+6. UI clara
+
+---
+
+## KPIs de validación
+
+- ≥70% jugadores completan Día 3
+- ≥60% reportan tensión narrativa
+- duración media del día: **12–15 min**
+
+---
+
+## Roadmap post MVP
+
+1. Minijuegos completos
+2. Sistema de sospecha
+3. Narrativa ramificada
+4. Campaña completa (15 días)
+5. Arte y audio finales
