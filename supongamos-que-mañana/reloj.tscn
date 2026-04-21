@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cjq8vhlo4gkhx"]
+
+[node name="Reloj" type="Node2D" unique_id=1103609446]
+
+[node name="Timer" type="Timer" parent="." unique_id=829654975]
+
+[node name="Label" type="Label" parent="." unique_id=691939863]
+offset_right = 40.0
+offset_bottom = 23.0
