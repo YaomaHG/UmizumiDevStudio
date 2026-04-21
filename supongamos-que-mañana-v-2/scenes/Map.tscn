@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ca7ylnfahgaew"]
+
+[node name="Map" type="CanvasLayer" unique_id=1609114940]
+
+[node name="Panel" type="Panel" parent="." unique_id=504360308]
+offset_right = 172.0
+offset_bottom = 174.0

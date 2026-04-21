@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dkksbgdlggbe6"]
+
+[ext_resource type="Script" uid="uid://bhn6hw6vbxiew" path="res://scripts/estufa.gd" id="1_xxjn6"]
+[ext_resource type="Texture2D" uid="uid://bp8bt0yrxihlj" path="res://art/estufa_0.png" id="2_yw2w3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnr2e"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxjn6"]
+size = Vector2(100, 128)
+
+[node name="Estufa" type="StaticBody2D" unique_id=2031021868]
+script = ExtResource("1_xxjn6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1040537837]
+texture = ExtResource("2_yw2w3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1861101570]
+shape = SubResource("RectangleShape2D_vnr2e")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=518815814]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=2134898446]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_xxjn6")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detector_body_exited"]
