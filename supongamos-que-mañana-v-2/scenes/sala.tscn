@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djup6cc02ygp6"]
 
-[ext_resource type="Texture2D" uid="uid://bkr7y0efqhq21" path="res://art/piso_sala.png" id="1_ml4em"]
+[ext_resource type="Texture2D" uid="uid://bbg23npdi7mt5" path="res://art/sala.jpg" id="1_ltybl"]
 [ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/estufa.tscn" id="3_fgckq"]
 [ext_resource type="PackedScene" uid="uid://c3qw1c6yyukpd" path="res://scenes/monedas.tscn" id="4_7ubti"]
 [ext_resource type="PackedScene" uid="uid://c8ydgprv7jpaw" path="res://scenes/puerta.tscn" id="7_fgckq"]
@@ -17,58 +17,91 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_pg3vg"]
-a = Vector2(220, 35)
-b = Vector2(950, 35)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ml4em"]
+a = Vector2(35, 300)
+b = Vector2(950, 300)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_aq07l"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4xymg"]
 a = Vector2(950, 35)
 b = Vector2(950, 550)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_aqf5g"]
-a = Vector2(220, 550)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fgckq"]
+a = Vector2(35, 550)
 b = Vector2(950, 550)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_12o68"]
-a = Vector2(220, 35)
-b = Vector2(220, 550)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7ubti"]
+a = Vector2(35, 35)
+b = Vector2(35, 550)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5s20"]
+size = Vector2(364, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pg3vg"]
+size = Vector2(72, 97.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq07l"]
+size = Vector2(230, 89.25)
 
 [node name="Sala" type="Node2D" unique_id=175745033]
 script = SubResource("GDScript_ltybl")
 
-[node name="GameArea" type="Node2D" parent="." unique_id=199388301]
+[node name="GameArea" type="Node2D" parent="." unique_id=180490148]
 
-[node name="pared_arriba" type="StaticBody2D" parent="GameArea" unique_id=1815607308]
+[node name="textura" type="Sprite2D" parent="GameArea" unique_id=430136689]
+position = Vector2(493.2, 292.34)
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("1_ltybl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_arriba" unique_id=1536056773]
-shape = SubResource("SegmentShape2D_pg3vg")
+[node name="pared_arriba" type="StaticBody2D" parent="GameArea" unique_id=1860694042]
 
-[node name="pared_derecha" type="StaticBody2D" parent="GameArea" unique_id=2008760647]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_arriba" unique_id=845974743]
+shape = SubResource("SegmentShape2D_ml4em")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_derecha" unique_id=56656091]
-shape = SubResource("SegmentShape2D_aq07l")
+[node name="pared_derecha" type="StaticBody2D" parent="GameArea" unique_id=1186158266]
 
-[node name="pared_abajo" type="StaticBody2D" parent="GameArea" unique_id=1837497407]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_derecha" unique_id=1383125841]
+shape = SubResource("SegmentShape2D_4xymg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_abajo" unique_id=811514770]
-shape = SubResource("SegmentShape2D_aqf5g")
+[node name="pared_abajo" type="StaticBody2D" parent="GameArea" unique_id=1461024566]
 
-[node name="pared_izquierda" type="StaticBody2D" parent="GameArea" unique_id=1583598117]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_abajo" unique_id=1091647307]
+shape = SubResource("SegmentShape2D_fgckq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_izquierda" unique_id=1839533228]
-shape = SubResource("SegmentShape2D_12o68")
+[node name="pared_izquierda" type="StaticBody2D" parent="GameArea" unique_id=315764417]
 
-[node name="textura" type="Sprite2D" parent="GameArea" unique_id=2112343781]
-position = Vector2(585, 292.00003)
-scale = Vector2(7.309, 5.14)
-texture = ExtResource("1_ml4em")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_izquierda" unique_id=373397318]
+shape = SubResource("SegmentShape2D_7ubti")
+
+[node name="Objetos" type="Node2D" parent="GameArea" unique_id=1491981946]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameArea/Objetos" unique_id=688103463]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D" unique_id=2044170835]
+position = Vector2(499, 346)
+shape = SubResource("RectangleShape2D_y5s20")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="GameArea/Objetos" unique_id=256908145]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D2" unique_id=1155681826]
+position = Vector2(920, 287.75)
+shape = SubResource("RectangleShape2D_pg3vg")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="GameArea/Objetos" unique_id=331909056]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D3" unique_id=867317697]
+position = Vector2(493, 504.625)
+shape = SubResource("RectangleShape2D_aq07l")
 
 [node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("3_fgckq")]
-position = Vector2(900, 377)
-rotation = 1.5707964
+position = Vector2(244.99998, 321)
+scale = Vector2(1.23, 1.23)
 
 [node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("4_7ubti")]
-position = Vector2(445, 496)
+position = Vector2(110, 296)
 
-[node name="Puerta" parent="." unique_id=1513804328 instance=ExtResource("7_fgckq")]
-position = Vector2(225, 140)
+[node name="PuertaCocina" parent="." unique_id=1513804328 instance=ExtResource("7_fgckq")]
+position = Vector2(945, 395)
+
+[node name="PuertaCuarto" parent="." unique_id=38631115 instance=ExtResource("7_fgckq")]
+position = Vector2(857, 304)
+rotation = 1.5707964

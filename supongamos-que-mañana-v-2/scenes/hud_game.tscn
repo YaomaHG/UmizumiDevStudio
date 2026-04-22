@@ -7,18 +7,41 @@
 
 [node name="HudGame" type="CanvasLayer" unique_id=974286322]
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1406976184]
+offset_right = 35.0
+offset_bottom = 650.0
+color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1161174680]
+offset_left = 950.0
+offset_right = 1155.0
+offset_bottom = 650.0
+color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=134014618]
+offset_right = 1150.0
+offset_bottom = 35.0
+color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=141913513]
+offset_top = 550.0
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+
 [node name="TaskUi" parent="." unique_id=601846886 instance=ExtResource("1_bc6cc")]
-offset = Vector2(970, 35)
-transform = Transform2D(1, 0, 0, 1, 970, 35)
+offset = Vector2(965, 35)
+transform = Transform2D(1, 0, 0, 1, 965, 35)
 
 [node name="Map" parent="." unique_id=1609114940 instance=ExtResource("2_2eyxe")]
-offset = Vector2(970, 460)
-transform = Transform2D(1, 0, 0, 1, 970, 460)
+offset = Vector2(965, 460)
+transform = Transform2D(1, 0, 0, 1, 965, 460)
 
 [node name="Marido" parent="." unique_id=824793050 instance=ExtResource("3_e4le2")]
+visible = false
 position = Vector2(110, 300)
 scale = Vector2(2, 2)
 
 [node name="Frasco" parent="." unique_id=284680748 instance=ExtResource("4_thcb7")]
-position = Vector2(113, 541)
+position = Vector2(1050, 370)
 scale = Vector2(1.5, 1.5)
