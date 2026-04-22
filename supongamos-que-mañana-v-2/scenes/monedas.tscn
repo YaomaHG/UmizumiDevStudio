@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c3qw1c6yyukpd"]
+
+[ext_resource type="Script" uid="uid://cqbtow4b7w4m4" path="res://scripts/monedas.gd" id="1_sp5dt"]
+[ext_resource type="Texture2D" uid="uid://cu8tivac3083e" path="res://art/monedas.png" id="1_xqvcj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sp5dt"]
+radius = 20.0
+height = 100.0
+
+[node name="Monedas" type="Area2D" unique_id=1951227433]
+script = ExtResource("1_sp5dt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=160867822]
+texture = ExtResource("1_xqvcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=32100335]
+position = Vector2(0, 27)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sp5dt")

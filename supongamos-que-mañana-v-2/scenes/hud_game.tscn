@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://doflitqdeakc6"]
+
+[ext_resource type="PackedScene" uid="uid://lflbb2gowumo" path="res://scenes/task.tscn" id="1_bc6cc"]
+[ext_resource type="PackedScene" uid="uid://ca7ylnfahgaew" path="res://scenes/map.tscn" id="2_2eyxe"]
+[ext_resource type="PackedScene" uid="uid://bikkyiak6mntu" path="res://scenes/marido.tscn" id="3_e4le2"]
+[ext_resource type="PackedScene" uid="uid://b0y4lhxbwugyh" path="res://scenes/frasco.tscn" id="4_thcb7"]
+
+[node name="HudGame" type="CanvasLayer" unique_id=974286322]
+
+[node name="TaskUi" parent="." unique_id=601846886 instance=ExtResource("1_bc6cc")]
+offset = Vector2(970, 35)
+transform = Transform2D(1, 0, 0, 1, 970, 35)
+
+[node name="Map" parent="." unique_id=1609114940 instance=ExtResource("2_2eyxe")]
+offset = Vector2(970, 460)
+transform = Transform2D(1, 0, 0, 1, 970, 460)
+
+[node name="Marido" parent="." unique_id=824793050 instance=ExtResource("3_e4le2")]
+position = Vector2(110, 300)
+scale = Vector2(2, 2)
+
+[node name="Frasco" parent="." unique_id=284680748 instance=ExtResource("4_thcb7")]
+position = Vector2(113, 541)
+scale = Vector2(1.5, 1.5)

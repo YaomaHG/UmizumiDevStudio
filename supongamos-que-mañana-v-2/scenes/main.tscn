@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ddy7uoqx3kg80"]
 
-[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/Estufa.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/estufa.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://ct02nh7gmb5a7" path="res://art/azulejo_cocina.png" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://beurx26swxq73" path="res://scenes/player.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://lflbb2gowumo" path="res://scenes/TaskUI.tscn" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://ca7ylnfahgaew" path="res://scenes/Map.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://doflitqdeakc6" path="res://scenes/hud_game.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://c3qw1c6yyukpd" path="res://scenes/monedas.tscn" id="4_tbgi4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0wfyh"]
 a = Vector2(220, 35)
@@ -54,8 +54,8 @@ shape = SubResource("SegmentShape2D_jyhfs")
 shape = SubResource("SegmentShape2D_tbgi4")
 
 [node name="textura" type="Sprite2D" parent="GameArea" unique_id=932364876]
-position = Vector2(587.5, 291)
-scale = Vector2(7.3300004, 5.1)
+position = Vector2(585, 292.00003)
+scale = Vector2(7.309, 5.14)
 texture = ExtResource("2_jyhfs")
 
 [node name="Player" parent="." unique_id=724834942 instance=ExtResource("2_sugp2")]
@@ -64,10 +64,7 @@ position = Vector2(579, 323)
 [node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("2_0wfyh")]
 position = Vector2(350, 85)
 
-[node name="TaskUi" parent="." unique_id=601846886 instance=ExtResource("4_jyhfs")]
-offset = Vector2(970, 35)
-transform = Transform2D(1, 0, 0, 1, 970, 35)
+[node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("4_tbgi4")]
+position = Vector2(856, 80)
 
-[node name="Map" parent="." unique_id=1609114940 instance=ExtResource("5_tbgi4")]
-offset = Vector2(970, 460)
-transform = Transform2D(1, 0, 0, 1, 970, 460)
+[node name="HudGame" parent="." unique_id=974286322 instance=ExtResource("4_jyhfs")]
