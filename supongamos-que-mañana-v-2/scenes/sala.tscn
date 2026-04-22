@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://djup6cc02ygp6"]
+
+[ext_resource type="Texture2D" uid="uid://bkr7y0efqhq21" path="res://art/piso_sala.png" id="1_ml4em"]
+[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/estufa.tscn" id="3_fgckq"]
+[ext_resource type="PackedScene" uid="uid://c3qw1c6yyukpd" path="res://scenes/monedas.tscn" id="4_7ubti"]
+[ext_resource type="PackedScene" uid="uid://c8ydgprv7jpaw" path="res://scenes/puerta.tscn" id="7_fgckq"]
+
+[sub_resource type="GDScript" id="GDScript_ltybl"]
+script/source = "extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pg3vg"]
+a = Vector2(220, 35)
+b = Vector2(950, 35)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_aq07l"]
+a = Vector2(950, 35)
+b = Vector2(950, 550)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_aqf5g"]
+a = Vector2(220, 550)
+b = Vector2(950, 550)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_12o68"]
+a = Vector2(220, 35)
+b = Vector2(220, 550)
+
+[node name="Sala" type="Node2D" unique_id=175745033]
+script = SubResource("GDScript_ltybl")
+
+[node name="GameArea" type="Node2D" parent="." unique_id=199388301]
+
+[node name="pared_arriba" type="StaticBody2D" parent="GameArea" unique_id=1815607308]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_arriba" unique_id=1536056773]
+shape = SubResource("SegmentShape2D_pg3vg")
+
+[node name="pared_derecha" type="StaticBody2D" parent="GameArea" unique_id=2008760647]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_derecha" unique_id=56656091]
+shape = SubResource("SegmentShape2D_aq07l")
+
+[node name="pared_abajo" type="StaticBody2D" parent="GameArea" unique_id=1837497407]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_abajo" unique_id=811514770]
+shape = SubResource("SegmentShape2D_aqf5g")
+
+[node name="pared_izquierda" type="StaticBody2D" parent="GameArea" unique_id=1583598117]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_izquierda" unique_id=1839533228]
+shape = SubResource("SegmentShape2D_12o68")
+
+[node name="textura" type="Sprite2D" parent="GameArea" unique_id=2112343781]
+position = Vector2(585, 292.00003)
+scale = Vector2(7.309, 5.14)
+texture = ExtResource("1_ml4em")
+
+[node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("3_fgckq")]
+position = Vector2(900, 377)
+rotation = 1.5707964
+
+[node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("4_7ubti")]
+position = Vector2(445, 496)
+
+[node name="Puerta" parent="." unique_id=1513804328 instance=ExtResource("7_fgckq")]
+position = Vector2(225, 140)
