@@ -1,29 +1,43 @@
 [gd_scene format=3 uid="uid://qh0ndpch5ar0"]
 
-[ext_resource type="Texture2D" uid="uid://vkxxikjrikcw" path="res://art/cocina.png" id="1_rjqmu"]
-[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/Estufa.tscn" id="3_1yh0t"]
+[ext_resource type="Texture2D" uid="uid://djm6yrwyicfcx" path="res://art/cocina.jpg" id="1_o0qxh"]
+[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/estufa.tscn" id="3_1yh0t"]
 [ext_resource type="PackedScene" uid="uid://c3qw1c6yyukpd" path="res://scenes/monedas.tscn" id="4_kii06"]
 [ext_resource type="PackedScene" uid="uid://c8ydgprv7jpaw" path="res://scenes/puerta.tscn" id="5_i1d44"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jawfl"]
-a = Vector2(220, 35)
-b = Vector2(950, 35)
+a = Vector2(35, 240)
+b = Vector2(950, 240)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3ywm7"]
 a = Vector2(950, 35)
 b = Vector2(950, 550)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5ynm2"]
-a = Vector2(220, 550)
+a = Vector2(35, 550)
 b = Vector2(950, 550)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2ista"]
-a = Vector2(220, 35)
-b = Vector2(220, 550)
+a = Vector2(35, 35)
+b = Vector2(35, 550)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0qxh"]
+size = Vector2(394, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjqmu"]
+size = Vector2(72, 171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt4s"]
+size = Vector2(203, 236.5)
 
 [node name="Cocina" type="Node2D" unique_id=1245253303]
 
 [node name="GameArea" type="Node2D" parent="." unique_id=784229003]
+
+[node name="textura" type="Sprite2D" parent="GameArea" unique_id=191501450]
+position = Vector2(493.2, 292.34)
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("1_o0qxh")
 
 [node name="pared_arriba" type="StaticBody2D" parent="GameArea" unique_id=1376663949]
 
@@ -45,17 +59,32 @@ shape = SubResource("SegmentShape2D_5ynm2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_izquierda" unique_id=641863313]
 shape = SubResource("SegmentShape2D_2ista")
 
-[node name="textura" type="Sprite2D" parent="GameArea" unique_id=191501450]
-position = Vector2(585, 292.00003)
-scale = Vector2(0.2653, 0.3353)
-texture = ExtResource("1_rjqmu")
+[node name="Objetos" type="Node2D" parent="GameArea" unique_id=1487066001]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameArea/Objetos" unique_id=1946947267]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D" unique_id=257293754]
+position = Vector2(250, 284.5)
+shape = SubResource("RectangleShape2D_o0qxh")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="GameArea/Objetos" unique_id=889769256]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D2" unique_id=561880123]
+position = Vector2(90, 326.5)
+shape = SubResource("RectangleShape2D_rjqmu")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="GameArea/Objetos" unique_id=635509854]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D3" unique_id=709477585]
+position = Vector2(708.5, 390.75)
+shape = SubResource("RectangleShape2D_3vt4s")
 
 [node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("3_1yh0t")]
-position = Vector2(390, 239)
-scale = Vector2(1.6, 2)
+position = Vector2(247, 267)
+scale = Vector2(1.23, 1.23)
 
 [node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("4_kii06")]
-position = Vector2(881, 451)
+position = Vector2(881, 289)
 
 [node name="Puerta" parent="." unique_id=1513804328 instance=ExtResource("5_i1d44")]
-position = Vector2(945, 140)
+position = Vector2(41, 395)

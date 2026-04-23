@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c72jiyl78pugy"]
+
+[ext_resource type="Texture2D" uid="uid://b7gxh8xgq8fns" path="res://art/cuarto.jpg" id="1_1oq1i"]
+[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/estufa.tscn" id="2_jiny2"]
+[ext_resource type="PackedScene" uid="uid://c3qw1c6yyukpd" path="res://scenes/monedas.tscn" id="3_d2hq2"]
+[ext_resource type="PackedScene" uid="uid://c8ydgprv7jpaw" path="res://scenes/puerta.tscn" id="4_u0jjk"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0x4av"]
+a = Vector2(35, 300)
+b = Vector2(950, 300)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7wft7"]
+a = Vector2(950, 35)
+b = Vector2(950, 550)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7rprk"]
+a = Vector2(35, 550)
+b = Vector2(950, 550)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rv5s5"]
+a = Vector2(35, 35)
+b = Vector2(35, 550)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqx35"]
+size = Vector2(280.5, 216.25)
+
+[node name="Cuarto" type="Node2D" unique_id=181351308]
+
+[node name="GameArea" type="Node2D" parent="." unique_id=905933072]
+
+[node name="textura" type="Sprite2D" parent="GameArea" unique_id=1948248556]
+position = Vector2(493.2, 292.34)
+scale = Vector2(0.335, 0.335)
+texture = ExtResource("1_1oq1i")
+
+[node name="pared_arriba" type="StaticBody2D" parent="GameArea" unique_id=399553289]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_arriba" unique_id=416107760]
+shape = SubResource("SegmentShape2D_0x4av")
+
+[node name="pared_derecha" type="StaticBody2D" parent="GameArea" unique_id=77998683]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_derecha" unique_id=2014954447]
+shape = SubResource("SegmentShape2D_7wft7")
+
+[node name="pared_abajo" type="StaticBody2D" parent="GameArea" unique_id=1945858552]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_abajo" unique_id=92758419]
+shape = SubResource("SegmentShape2D_7rprk")
+
+[node name="pared_izquierda" type="StaticBody2D" parent="GameArea" unique_id=797295699]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/pared_izquierda" unique_id=291290649]
+shape = SubResource("SegmentShape2D_rv5s5")
+
+[node name="Objetos" type="Node2D" parent="GameArea" unique_id=746933401]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="GameArea/Objetos" unique_id=493966848]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D3" unique_id=2078868850]
+position = Vector2(492.75, 401.875)
+shape = SubResource("RectangleShape2D_tqx35")
+
+[node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("2_jiny2")]
+position = Vector2(244.99998, 309)
+scale = Vector2(1.23, 1.23)
+
+[node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("3_d2hq2")]
+position = Vector2(128, 270)
+coin_value = 40
+
+[node name="Puerta" parent="." unique_id=1513804328 instance=ExtResource("4_u0jjk")]
+position = Vector2(908, 547.92)
+rotation = 1.5707964
+scale = Vector2(1, 0.565)
