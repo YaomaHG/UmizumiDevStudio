@@ -63,7 +63,7 @@ shape = SubResource("RectangleShape2D_tqx35")
 
 [node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("2_jiny2")]
 position = Vector2(244.99998, 309)
-scale = Vector2(1.23, 1.23)
+scale = Vector2(1.67, 1.4300001)
 
 [node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("3_d2hq2")]
 position = Vector2(128, 270)

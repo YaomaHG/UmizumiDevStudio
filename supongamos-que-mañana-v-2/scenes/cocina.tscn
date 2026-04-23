@@ -28,7 +28,7 @@ size = Vector2(394, 91)
 size = Vector2(72, 171)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vt4s"]
-size = Vector2(203, 236.5)
+size = Vector2(203, 181.5)
 
 [node name="Cocina" type="Node2D" unique_id=1245253303]
 
@@ -76,7 +76,7 @@ shape = SubResource("RectangleShape2D_rjqmu")
 [node name="StaticBody2D3" type="StaticBody2D" parent="GameArea/Objetos" unique_id=635509854]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea/Objetos/StaticBody2D3" unique_id=709477585]
-position = Vector2(708.5, 390.75)
+position = Vector2(708.5, 363.25)
 shape = SubResource("RectangleShape2D_3vt4s")
 
 [node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("3_1yh0t")]

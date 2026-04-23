@@ -1,7 +1,7 @@
 extends Node2D
 
 var player = null
-var is_visible = false
+var bar_visible = false
 var label = null
 var background = null
 var fill_bar = null
@@ -33,19 +33,19 @@ func _ready():
 	
 	hide()
 
-func _process(delta):
-	if is_visible and player:
+func _process(_delta):
+	if bar_visible and player:
 		global_position = player.global_position + Vector2(-bar_width / 2.0, -80)
 
-func _on_show_progress_bar(should_show: bool, pos: Vector2):
+func _on_show_progress_bar(should_show: bool, _pos: Vector2):
 	if should_show:
-		if not is_visible:
+		if not bar_visible:
 			label.text = "0%"
 			fill_bar.size.x = 0
-		is_visible = true
+		bar_visible = true
 		self.show()
 	else:
-		is_visible = false
+		bar_visible = false
 		self.hide()
 
 func update_progress(progress: float):

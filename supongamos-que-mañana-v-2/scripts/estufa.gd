@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var interaction_time = 4.0
-@export var debug_interaction = true
+@export var debug_interaction = false
 @export var interaction_area_padding = Vector2(28, 28)
 var is_player_near = false
 var is_interacting = false

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var completed_tasks = 0
-var max_tasks = 2
+var max_tasks = 3
 
 func _ready():
 	$Panel.add_theme_stylebox_override("panel", StyleBoxFlat.new())
@@ -32,11 +32,11 @@ func add_completed_task():
 		completed_tasks += 1
 		update_task_counter()
 
-func _on_task_progress(progress: float):
+func _on_task_progress(_progress: float):
 	pass
 
 func _on_task_completed():
 	add_completed_task()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
