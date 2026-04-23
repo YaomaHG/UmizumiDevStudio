@@ -93,11 +93,11 @@ position = Vector2(493, 504.625)
 shape = SubResource("RectangleShape2D_aq07l")
 
 [node name="Sofa" parent="." unique_id=2031021868 instance=ExtResource("3_fgckq")]
-position = Vector2(587, 306)
-scale = Vector2(2.9, 3.5)
+position = Vector2(502, 302)
+scale = Vector2(3.815083, 3.6301045)
 
 [node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("4_7ubti")]
-position = Vector2(284, 497)
+position = Vector2(265, 489)
 
 [node name="PuertaCocina" parent="." unique_id=1513804328 instance=ExtResource("7_fgckq")]
 position = Vector2(945, 395)
