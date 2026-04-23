@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://ddy7uoqx3kg80"]
 
-[ext_resource type="Script" uid="uid://cyuo6dp3qlfgi" path="res://scripts/main.gd" id="1_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://beurx26swxq73" path="res://scenes/player.tscn" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://oedkxsrbay03" path="res://scripts/main.gd" id="1_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://du1djkb2j3r06" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://qh0ndpch5ar0" path="res://scenes/cocina.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://doflitqdeakc6" path="res://scenes/hud_game.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://djup6cc02ygp6" path="res://scenes/sala.tscn" id="5_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://c72jiyl78pugy" path="res://scenes/cuarto.tscn" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dy3vpqo31cojr" path="res://scenes/cuarto.tscn" id="5_tefeu"]
 
 [node name="Main" type="Node2D" unique_id=843341699]
 script = ExtResource("1_o6xl0")

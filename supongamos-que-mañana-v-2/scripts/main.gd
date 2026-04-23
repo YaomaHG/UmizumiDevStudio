@@ -86,7 +86,7 @@ func conectar_puertas():
 	if cuarto.has_node("Puerta"):
 		var puerta_cuarto = cuarto.get_node("Puerta")
 		if puerta_cuarto.has_signal("body_entered"):
-			puerta_cuarto.body_entered.connect(_on_puerta_entered.bind("sala", "cuarto"))
+			puerta_cuarto.body_entered.connect(_on_puerta_entered.bind("sala", "sala_cuarto"))
 
 func _on_puerta_entered(body, destino, origen):
 	if body == player and area_actual != destino and not cambiando_area:

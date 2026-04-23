@@ -87,4 +87,4 @@ scale = Vector2(2.0634482, 1.8107407)
 position = Vector2(881, 289)
 
 [node name="Puerta" parent="." unique_id=1513804328 instance=ExtResource("5_i1d44")]
-position = Vector2(41, 395)
+position = Vector2(943, 396)

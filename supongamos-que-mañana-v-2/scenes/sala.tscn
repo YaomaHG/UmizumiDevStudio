@@ -100,8 +100,8 @@ scale = Vector2(3.815083, 3.6301045)
 position = Vector2(265, 489)
 
 [node name="PuertaCocina" parent="." unique_id=1513804328 instance=ExtResource("7_fgckq")]
-position = Vector2(945, 395)
+position = Vector2(40, 345)
 
 [node name="PuertaCuarto" parent="." unique_id=38631115 instance=ExtResource("7_fgckq")]
-position = Vector2(857, 304)
+position = Vector2(858, 315)
 rotation = 1.5707964
