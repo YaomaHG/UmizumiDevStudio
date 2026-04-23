@@ -3,9 +3,12 @@ extends Node2D
 @onready var cocina = $Cocina
 @onready var sala = $Sala
 @onready var player = $Player
+@onready var hud_game = $HudGame
+@onready var task_ui = $HudGame/TaskUi
 
 var area_actual = "cocina"
 var cambiando_area = false  # Para evitar múltiples cambios
+var progress_bar_display = null
 
 @export var spawn_cocina: Vector2 = Vector2(880, 220)
 @export var spawn_sala: Vector2 = Vector2(280, 220)
@@ -16,15 +19,51 @@ func _ready():
 	
 	activar_cocina()
 	conectar_puertas()
+	crear_barra_progreso()
+	conectar_estufas_con_hud()
 	
 	if start_marker and start_marker is Marker2D:
 		# Usar la posición del Start Marker2D
 		player.global_position = start_marker.global_position
-		print("🎮 Jugador iniciado en Start Marker: ", start_marker.global_position)
 	else:
 		# Si no existe Start Marker, usar la posición de cocina por defecto
 		player.global_position = spawn_cocina
-		print("⚠️ No se encontró Start Marker, usando spawn_cocina: ", spawn_cocina)
+
+func crear_barra_progreso():
+	var progress_layer = Node2D.new()
+	progress_layer.name = "ProgressBarLayer"
+	progress_layer.script = load("res://scripts/progress_bar_display.gd")
+	add_child(progress_layer)
+	progress_bar_display = progress_layer
+
+func conectar_estufas_con_hud():
+	# Conectar estufa de cocina
+	if cocina.has_node("Estufa"):
+		var estufa_cocina = cocina.get_node("Estufa")
+		_conectar_interactivo_con_hud(estufa_cocina)
+	
+	# Conectar interactivo de sala (Sofa nuevo o Estufa previo)
+	if sala.has_node("Sofa"):
+		var sofa_sala = sala.get_node("Sofa")
+		_conectar_interactivo_con_hud(sofa_sala)
+	elif sala.has_node("Estufa"):
+		var estufa_sala = sala.get_node("Estufa")
+		_conectar_interactivo_con_hud(estufa_sala)
+
+func _conectar_interactivo_con_hud(interactivo: Node):
+	if not interactivo:
+		return
+	if interactivo.has_signal("task_progress"):
+		if not interactivo.task_progress.is_connected(task_ui._on_task_progress):
+			interactivo.task_progress.connect(task_ui._on_task_progress)
+		if not interactivo.task_progress.is_connected(progress_bar_display.update_progress):
+			interactivo.task_progress.connect(progress_bar_display.update_progress)
+	if interactivo.has_signal("task_completed"):
+		if not interactivo.task_completed.is_connected(task_ui._on_task_completed):
+			interactivo.task_completed.connect(task_ui._on_task_completed)
+	if interactivo.has_signal("show_progress_bar"):
+		if not interactivo.show_progress_bar.is_connected(progress_bar_display._on_show_progress_bar):
+			interactivo.show_progress_bar.connect(progress_bar_display._on_show_progress_bar)
 
 func conectar_puertas():
 	if cocina.has_node("Puerta"):

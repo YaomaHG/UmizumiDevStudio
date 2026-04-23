@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dkksbgdlggbe6"]
 
 [ext_resource type="Script" uid="uid://bhn6hw6vbxiew" path="res://scripts/estufa.gd" id="1_xxjn6"]
-[ext_resource type="Texture2D" uid="uid://bp8bt0yrxihlj" path="res://art/estufa_0.png" id="2_yw2w3"]
+[ext_resource type="Texture2D" uid="uid://db4qp2x2kcfsy" path="res://art/estufa.png" id="2_yw2w3"]
+[ext_resource type="Texture2D" uid="uid://bpjxwgbk5jxcm" path="res://art/Exclamacion.png" id="3_i5kbv"]
+[ext_resource type="Script" uid="uid://d2jfjlk4uc9jc" path="res://scripts/exclamacion_no_rotar.gd" id="4_nxjfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnr2e"]
 size = Vector2(100, 100)
@@ -13,7 +15,14 @@ size = Vector2(100, 128)
 script = ExtResource("1_xxjn6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1040537837]
+scale = Vector2(0.18, 0.18)
 texture = ExtResource("2_yw2w3")
+
+[node name="Exclamacion" type="Sprite2D" parent="." unique_id=3827195636]
+position = Vector2(0, -60)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_i5kbv")
+script = ExtResource("4_nxjfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1861101570]
 shape = SubResource("RectangleShape2D_vnr2e")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://qh0ndpch5ar0"]
 
-[ext_resource type="Texture2D" uid="uid://ct02nh7gmb5a7" path="res://art/azulejo_cocina.png" id="1_rjqmu"]
-[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/estufa.tscn" id="3_1yh0t"]
+[ext_resource type="Texture2D" uid="uid://vkxxikjrikcw" path="res://art/cocina.png" id="1_rjqmu"]
+[ext_resource type="PackedScene" uid="uid://dkksbgdlggbe6" path="res://scenes/Estufa.tscn" id="3_1yh0t"]
 [ext_resource type="PackedScene" uid="uid://c3qw1c6yyukpd" path="res://scenes/monedas.tscn" id="4_kii06"]
 [ext_resource type="PackedScene" uid="uid://c8ydgprv7jpaw" path="res://scenes/puerta.tscn" id="5_i1d44"]
 
@@ -47,14 +47,15 @@ shape = SubResource("SegmentShape2D_2ista")
 
 [node name="textura" type="Sprite2D" parent="GameArea" unique_id=191501450]
 position = Vector2(585, 292.00003)
-scale = Vector2(7.309, 5.14)
+scale = Vector2(0.2653, 0.3353)
 texture = ExtResource("1_rjqmu")
 
 [node name="Estufa" parent="." unique_id=2031021868 instance=ExtResource("3_1yh0t")]
-position = Vector2(350, 85)
+position = Vector2(390, 239)
+scale = Vector2(1.6, 2)
 
 [node name="Monedas" parent="." unique_id=1951227433 instance=ExtResource("4_kii06")]
-position = Vector2(856, 80)
+position = Vector2(881, 451)
 
 [node name="Puerta" parent="." unique_id=1513804328 instance=ExtResource("5_i1d44")]
 position = Vector2(945, 140)
