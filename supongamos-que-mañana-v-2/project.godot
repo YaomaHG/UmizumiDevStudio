@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 SceneManager="*uid://hpul5m881td6"
 
+[dotnet]
+
+project/assembly_name="v01"
+
 [input]
 
 move_right={
