@@ -19,6 +19,21 @@ var timer_label: Label = null
 var end_overlay: ColorRect = null
 var end_image: TextureRect = null
 var end_image_base_position = Vector2(265, 180)
+var day: int = 1
+const DAY_TIMES = [60.0, 50.0, 40.0, 30.0]
+const MAX_DAYS = 4
+
+var marido = null
+var marido_state_label: Label = null
+var day_overlay: ColorRect = null
+var day_label: Label = null
+var day_tasks_label: Label = null
+var day_penalty_label: Label = null
+var day_marido_label: Label = null
+var day_continue_label: Label = null
+var skip_day_label: Label = null
+var _waiting_for_day_advance: bool = false
+var _time_out_handled: bool = false
 
 # Posiciones de spawn
 @export var spawn_cocina: Vector2 = Vector2(100, 450)
@@ -33,6 +48,16 @@ func _ready():
 	conectar_interactivos_con_hud()
 	crear_ui_tiempo_resultado()
 
+	# Inicializar tiempo según el día actual
+	time_left = DAY_TIMES[clamp(day - 1, 0, DAY_TIMES.size() - 1)]
+
+	# Attach script for Marido instance in HUD (si existe)
+	if hud_game and hud_game.has_node("Marido"):
+		var marido_node = hud_game.get_node("Marido")
+		marido_node.script = load("res://scripts/marido.gd")
+		marido = marido_node
+		_actualizar_marido_label()
+
 	var start_marker = get_node_or_null("Start")
 	if start_marker and start_marker is Marker2D:
 		player.global_position = start_marker.global_position
@@ -40,6 +65,18 @@ func _ready():
 		player.global_position = spawn_cuarto
 
 func _process(delta):
+	if _waiting_for_day_advance:
+		if Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_SPACE):
+			_waiting_for_day_advance = false
+			day_overlay.visible = false
+			reiniciar_dia()
+		return
+
+	# DEBUG: Botón para saltar día (tecla K)
+	if Input.is_key_pressed(KEY_K):
+		_time_out_handled = false
+		time_left = 0.0
+
 	if game_finished:
 		return
 
@@ -51,7 +88,243 @@ func _process(delta):
 		return
 
 	if time_left <= 0.0:
-		terminar_juego(false)
+		_on_time_out()
+
+func _actualizar_marido_label():
+	if not marido_state_label:
+		return
+	if marido:
+		marido_state_label.text = "Esposo: %s" % [marido.get_state_name().capitalize()]
+	else:
+		marido_state_label.text = "Esposo: Normal"
+
+func _on_time_out():
+	# Prevenir ejecución múltiple
+	if _time_out_handled:
+		return
+	_time_out_handled = true
+
+	# Si el esposo ya está furioso, la siguiente derrota es Game Over permanente.
+	if not marido:
+		# intentar adjuntar script si faltó
+		if hud_game and hud_game.has_node("Marido"):
+			var mnode = hud_game.get_node("Marido")
+			mnode.script = load("res://scripts/marido.gd")
+			marido = mnode
+
+	if marido and marido.is_furioso():
+		terminar_juego(false) # Game Over definitivo
+		return
+
+	# Si es el día 1: mostrar solo "DIA 2" sin estadísticas
+	if day == 1:
+		if marido:
+			marido.incrementar_estado()
+			_actualizar_marido_label()
+		
+		day = 2
+		_waiting_for_day_advance = true
+		game_finished = true
+		_show_simple_day_overlay(day)
+		return
+
+	# Día 2+: mostrar transición completa con estadísticas
+	var next_day = min(day + 1, MAX_DAYS)
+	var penalty = 10 # segundos a restar por día
+	var marido_got_angrier = false
+	var new_state_name = "Normal"
+
+	# Recopilar estado previo
+	var prev_state_index = -1
+	if marido:
+		prev_state_index = marido.get_state_index()
+		# incrementar estado aquí para reflejar el cambio que debe mostrarse
+		marido.incrementar_estado()
+		new_state_name = marido.get_state_name().capitalize()
+		marido_got_angrier = marido.get_state_index() > prev_state_index
+		_actualizar_marido_label()
+
+	# Recopilar tareas incompletas para mostrar cuáles fallaron
+	var incomplete = _collect_incomplete_tasks()
+	# Mostrar pantalla de cambio de día con la info
+	_show_day_transition(next_day, incomplete, penalty, marido_got_angrier, new_state_name)
+
+	# Actualizaremos `day` y reiniciaremos al terminar la animación (en callback)
+	day = next_day
+
+func reiniciar_dia():
+	# Reinicia el estado de la partida para el siguiente día sin mostrar Game Over
+	game_finished = false
+	Engine.time_scale = 1.0
+	get_tree().paused = false
+
+	if timer_label:
+		timer_label.visible = true
+	if end_overlay:
+		end_overlay.visible = false
+	if end_image:
+		end_image.visible = false
+
+	# Reset de tareas
+	if task_ui:
+		task_ui.completed_tasks = 0
+		if task_ui.has_method("update_task_counter"):
+			task_ui.update_task_counter()
+
+	# Reset progress bar si aplica
+	if progress_bar_display and progress_bar_display.has_method("update_progress"):
+		# dejar en 0
+		progress_bar_display.update_progress(0.0)
+
+	# Reposicionar jugador y ajustar tiempo para el nuevo día
+	player.global_position = spawn_cuarto
+	time_left = DAY_TIMES[clamp(day - 1, 0, DAY_TIMES.size() - 1)]
+	actualizar_timer_label()
+	_time_out_handled = false
+
+func _create_day_overlay():
+	# Capa negra full screen
+	day_overlay = ColorRect.new()
+	day_overlay.name = "DayOverlay"
+	day_overlay.color = Color(0, 0, 0, 0)
+	day_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	day_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	day_overlay.visible = false
+	hud_game.add_child(day_overlay)
+
+	# Label grande para 'DIA X'
+	day_label = Label.new()
+	day_label.name = "DayLabel"
+	day_label.text = "DIA 1"
+	day_label.position = Vector2(540, 160)
+	day_label.add_theme_font_size_override("font_size", 56)
+	day_label.horizontal_alignment = 1
+	day_label.add_theme_color_override("font_color", Color(1,1,1))
+	day_label.modulate = Color(1,1,1,0)
+	day_overlay.add_child(day_label)
+
+	# Label para tareas falladas (DERECHA)
+	day_tasks_label = Label.new()
+	day_tasks_label.name = "DayTasksLabel"
+	day_tasks_label.text = ""
+	day_tasks_label.position = Vector2(850, 220)
+	day_tasks_label.add_theme_font_size_override("font_size", 18)
+	day_tasks_label.horizontal_alignment = 0
+	day_tasks_label.custom_minimum_size = Vector2(250, 0)
+	day_tasks_label.add_theme_color_override("font_color", Color(1,1,1))
+	day_tasks_label.modulate = Color(1,1,1,0)
+	day_overlay.add_child(day_tasks_label)
+
+	# Label para penalizacion de tiempo (DERECHA)
+	day_penalty_label = Label.new()
+	day_penalty_label.name = "DayPenaltyLabel"
+	day_penalty_label.text = ""
+	day_penalty_label.position = Vector2(850, 300)
+	day_penalty_label.add_theme_font_size_override("font_size", 20)
+	day_penalty_label.horizontal_alignment = 0
+	day_penalty_label.add_theme_color_override("font_color", Color(1,1,1))
+	day_penalty_label.modulate = Color(1,1,1,0)
+	day_overlay.add_child(day_penalty_label)
+
+	# Label para estado del esposo (si aumentó) (DERECHA)
+	day_marido_label = Label.new()
+	day_marido_label.name = "DayMaridoLabel"
+	day_marido_label.text = ""
+	day_marido_label.position = Vector2(850, 350)
+	day_marido_label.add_theme_font_size_override("font_size", 20)
+	day_marido_label.horizontal_alignment = 0
+	day_marido_label.add_theme_color_override("font_color", Color(1,1,1))
+	day_marido_label.modulate = Color(1,1,1,0)
+	day_overlay.add_child(day_marido_label)
+
+	# Label para confirmación (continuar con espacio)
+	day_continue_label = Label.new()
+	day_continue_label.name = "DayContinueLabel"
+	day_continue_label.text = "Presiona ESPACIO para continuar"
+	day_continue_label.position = Vector2(540, 500)
+	day_continue_label.add_theme_font_size_override("font_size", 18)
+	day_continue_label.horizontal_alignment = 1
+	day_continue_label.add_theme_color_override("font_color", Color(1,1,1))
+	day_continue_label.modulate = Color(1,1,1,0)
+	day_overlay.add_child(day_continue_label)
+
+func _collect_incomplete_tasks() -> Array:
+	var list = []
+	# Buscar en habitaciones principales
+	for root in [cocina, sala, cuarto]:
+		if not root:
+			continue
+		for child in root.get_children():
+			var val = null
+			# Intentar leer propiedad is_completed (si existe)
+			val = child.get("is_completed")
+			if val != null:
+				list.append({"name": child.name, "completed": bool(val)})
+			# También buscar recursivamente dentro
+			for sub in child.get_children():
+				var sval = sub.get("is_completed")
+				if sval != null:
+					list.append({"name": sub.name, "completed": bool(sval)})
+	return list
+
+func _show_day_transition(next_day: int, incomplete: Array, penalty: int, marido_got_angrier: bool, new_state_name: String):
+	if not day_overlay:
+		_create_day_overlay()
+
+	# Preparar texto
+	day_label.text = "DIA %d" % next_day
+	var failed_count = 0
+	var tasks_text = ""
+	for item in incomplete:
+		if not item.completed:
+			failed_count += 1
+			tasks_text += "- %s\n" % item.name
+	if tasks_text == "":
+		tasks_text = "No hubo tareas incompletas."
+	day_tasks_label.text = "Tareas incompletas: %d/%d\n%s" % [failed_count, task_ui.max_tasks, tasks_text]
+	day_penalty_label.text = "Perderás: -%ds" % penalty
+	day_marido_label.text = "Esposo: %s %s" % [new_state_name, "(se enojó)" if marido_got_angrier else ""]
+
+	# Mostrar overlay y animar aparición
+	day_overlay.visible = true
+	# Fade in overlay color alpha
+	var tw = create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(day_overlay, "color:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tw.tween_property(day_label, "modulate:a", 1.0, 0.6)
+	tw.tween_property(day_tasks_label, "modulate:a", 1.0, 0.6)
+	tw.tween_property(day_penalty_label, "modulate:a", 1.0, 0.6)
+	tw.tween_property(day_marido_label, "modulate:a", 1.0, 0.6)
+	tw.tween_property(day_continue_label, "modulate:a", 1.0, 0.6)
+
+	# Esperar a que terminen las animaciones y luego poner en estado de espera
+	await tw.finished
+	_waiting_for_day_advance = true
+
+func _show_simple_day_overlay(next_day: int):
+	# Mostrar solo "DIA X" sin estadísticas (para el día 1)
+	if not day_overlay:
+		_create_day_overlay()
+
+	# Preparar texto
+	day_label.text = "DIA %d" % next_day
+	day_tasks_label.text = ""
+	day_penalty_label.text = ""
+	day_marido_label.text = ""
+	day_continue_label.text = "Presiona ESPACIO para continuar"
+
+	# Mostrar overlay y animar aparición
+	day_overlay.visible = true
+	# Fade in overlay color alpha
+	var tw = create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(day_overlay, "color:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tw.tween_property(day_label, "modulate:a", 1.0, 0.6)
+	tw.tween_property(day_continue_label, "modulate:a", 1.0, 0.6)
+
+	# Esperar a que terminen las animaciones y luego poner en estado de espera
+	await tw.finished
+	_waiting_for_day_advance = true
 
 func crear_barra_progreso():
 	var progress_layer = Node2D.new()
@@ -80,6 +353,27 @@ func crear_ui_tiempo_resultado():
 	timer_label.add_theme_color_override("font_color", Color(1, 1, 1))
 	hud_game.add_child(timer_label)
 	actualizar_timer_label()
+
+	# Label para mostrar estado del esposo
+	marido_state_label = Label.new()
+	marido_state_label.name = "MaridoStateLabel"
+	marido_state_label.position = Vector2(965, 150)
+	marido_state_label.add_theme_font_size_override("font_size", 20)
+	marido_state_label.add_theme_color_override("font_color", Color(1, 1, 1))
+	hud_game.add_child(marido_state_label)
+	_actualizar_marido_label()
+
+	# Label para botón de saltar día (DEBUG)
+	skip_day_label = Label.new()
+	skip_day_label.name = "SkipDayLabel"
+	skip_day_label.text = "[K] Saltar Día"
+	skip_day_label.position = Vector2(965, 570)
+	skip_day_label.add_theme_font_size_override("font_size", 16)
+	skip_day_label.add_theme_color_override("font_color", Color(1, 1, 0))
+	hud_game.add_child(skip_day_label)
+
+	# Crear overlay de transición de día (invisible hasta el momento)
+	_create_day_overlay()
 
 	# Capa visual para fin de partida (color + imagen animada).
 	end_overlay = ColorRect.new()
