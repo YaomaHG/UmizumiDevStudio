@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://lflbb2gowumo"]
+
+[ext_resource type="Script" uid="uid://da1nex4jfqyfa" path="res://scripts/task_ui.gd" id="1_uh18x"]
+
+[node name="TaskUi" type="CanvasLayer" unique_id=601846886]
+script = ExtResource("1_uh18x")
+
+[node name="Panel" type="Panel" parent="." unique_id=820853115]
+offset_right = 172.0
+offset_bottom = 251.0
+
+[node name="Title" type="Label" parent="Panel" unique_id=956490583]
+layout_mode = 0
+offset_right = 171.0
+offset_bottom = 40.0
+text = "TAREAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tareas" type="HBoxContainer" parent="Panel" unique_id=1162904824]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 70.0
+offset_right = 160.0
+offset_bottom = 242.0

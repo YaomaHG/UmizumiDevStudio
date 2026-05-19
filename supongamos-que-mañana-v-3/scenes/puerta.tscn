@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c8ydgprv7jpaw"]
+
+[ext_resource type="Script" uid="uid://byjmar4ap8xqe" path="res://scripts/puerta.gd" id="1_1b3uk"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e0qtl"]
+b = Vector2(0, 150)
+
+[node name="Puerta" type="Area2D" unique_id=1513804328]
+script = ExtResource("1_1b3uk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=294907688]
+shape = SubResource("SegmentShape2D_e0qtl")
