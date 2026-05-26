@@ -103,13 +103,14 @@ func _reiniciar_interactivos():
 		interactivos.append(cocina.get_node("Estufa"))
 	if sala.has_node("Sofa"):
 		interactivos.append(sala.get_node("Sofa"))
-	if cuarto.has_node("Estufa"):
-		interactivos.append(cuarto.get_node("Estufa"))
+	if cuarto.has_node("Cama"):
+		interactivos.append(cuarto.get_node("Cama"))
 	
 	for obj in interactivos:
 		obj.is_completed = false
 		obj.is_interacting = false
-		obj.current_time = 0.0
+		if "current_time" in obj:
+			obj.current_time = 0.0
 		if obj.has_node("Sprite2D"):
 			obj.get_node("Sprite2D").modulate = Color(1, 1, 1)
 		
@@ -134,8 +135,8 @@ func conectar_interactivos_con_hud():
 	elif sala.has_node("Estufa"):
 		_conectar_interactivo_con_hud(sala.get_node("Estufa"))
 
-	if cuarto.has_node("Estufa"):
-		_conectar_interactivo_con_hud(cuarto.get_node("Estufa"))
+	if cuarto.has_node("Cama"):
+		_conectar_interactivo_con_hud(cuarto.get_node("Cama"))
 
 func crear_ui_tiempo_resultado():
 	timer_label = Label.new()

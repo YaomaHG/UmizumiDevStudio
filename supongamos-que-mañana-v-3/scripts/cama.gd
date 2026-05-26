@@ -1,19 +1,16 @@
 extends StaticBody2D
 
-@export var interaction_time = 4.0
 @export var debug_interaction = false
 @export var interaction_area_padding = Vector2(28, 28)
 var is_player_near = false
 var is_interacting = false
-var current_time = 0.0
 var player = null
 var is_completed = false
 var detection_area: Area2D = null
-var _last_debug_near_state = false
-var _last_debug_space_state = false
+var current_time: float = 0.0
 
 var minigame_instance = null
-const MINIJUEGO_SCENE = preload("res://scenes/minijuego_cocina.tscn")
+const MINIJUEGO_SCENE = preload("res://scenes/minijuego_cama.tscn")
 
 signal task_progress(progress: float)
 signal task_completed
@@ -30,29 +27,8 @@ func _ready():
 		if not detection_area.body_exited.is_connected(_on_detector_body_exited):
 			detection_area.body_exited.connect(_on_detector_body_exited)
 
-	_update_collision_sizes_from_sprite()
 	if has_node("Exclamacion"):
 		$Exclamacion.show()
-
-func _update_collision_sizes_from_sprite():
-	var sprite := get_node_or_null("Sprite2D") as Sprite2D
-	if not sprite or not sprite.texture:
-		return
-
-	# Ajusta colision al tamano visual real (textura * escala).
-	var visual_size = sprite.texture.get_size() * sprite.scale.abs()
-
-	var body_collision := get_node_or_null("CollisionShape2D") as CollisionShape2D
-	if body_collision and body_collision.shape is RectangleShape2D:
-		(body_collision.shape as RectangleShape2D).size = visual_size
-		body_collision.position = Vector2.ZERO
-
-	var detect_collision := get_node_or_null("DetectionArea/CollisionShape2D") as CollisionShape2D
-	if detect_collision and detect_collision.shape is RectangleShape2D:
-		# Area de interaccion atravesable mas grande que la colision solida.
-		(detect_collision.shape as RectangleShape2D).size = visual_size + interaction_area_padding
-		detect_collision.position = Vector2.ZERO
-		detect_collision.disabled = false
 
 func _process(_delta):
 	if is_completed:
@@ -60,7 +36,7 @@ func _process(_delta):
 
 	_update_player_proximity()
 	var interact_pressed = Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_E) or (Input.is_key_pressed(KEY_SPACE) and not Input.is_key_pressed(KEY_ESCAPE))
-	
+
 	if is_player_near and interact_pressed and not is_interacting:
 		start_interaction()
 
@@ -90,8 +66,8 @@ func start_minigame():
 	minigame_instance = MINIJUEGO_SCENE.instantiate()
 	
 	# Conectar las señales
-	minigame_instance.cocina_completada.connect(_on_minijuego_completado)
-	minigame_instance.cocina_cancelada.connect(_on_minijuego_cancelado)
+	minigame_instance.cama_completada.connect(_on_minijuego_completado)
+	minigame_instance.cama_cancelada.connect(_on_minijuego_cancelado)
 	
 	# Añadir al árbol de la escena principal para que se dibuje encima
 	get_tree().current_scene.add_child(minigame_instance)
@@ -110,7 +86,10 @@ func complete_interaction():
 	if player and player.has_method("set_working"):
 		player.set_working(false)
 	task_completed.emit()
-	$Sprite2D.modulate = Color(0.5, 1.0, 0.5)
+	
+	if has_node("Sprite2D"):
+		$Sprite2D.modulate = Color(0.2, 0.55, 0.2)
+		
 	if has_node("Exclamacion"):
 		$Exclamacion.hide()
 		if $Exclamacion.has_method("set_process"):
@@ -119,7 +98,6 @@ func complete_interaction():
 
 func cancel_interaction():
 	is_interacting = false
-	current_time = 0.0
 	if minigame_instance and is_instance_valid(minigame_instance):
 		minigame_instance.queue_free()
 		minigame_instance = null
@@ -127,7 +105,6 @@ func cancel_interaction():
 		player.set_working(false)
 	show_progress_bar.emit(false, Vector2.ZERO)
 
-# Método para detectar al jugador (usando Area2D como detector)
 func _on_detector_body_entered(body):
 	if body.name == "Player":
 		is_player_near = true
@@ -139,3 +116,4 @@ func _on_detector_body_exited(body):
 		player = null
 		if is_interacting:
 			cancel_interaction()
+
